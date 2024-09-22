@@ -1,15 +1,21 @@
 {% extends "layout.html" %} {% block title %} chai aur tweet {% endblock %}
 {%block content %}
 
-<h1 class="text-center mt-4">Welcome to Chai's Django project</h1>
+<h1 class="text-center mt-4">
+  <div class="alert alert-primary" role="alert">Welcome to tweet panda</div>
+</h1>
 
 <a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}"
   >Create a tweet</a
 >
-<div class="container row gap-3">
+<div class="container row gap-4 mb-4">
   {% for tweet in tweets%}
   <div class="card" style="width: 18rem">
+    {% if tweet.photo %}
     <img src="{{tweet.photo.url}}" class="card-img-top" alt="..." />
+    {% else %}
+    <p>No image uploaded.</p>
+    {% endif %}
     <div class="card-body">
       <h5 class="card-title">{{tweet.user.username}}</h5>
       <p class="card-text">{{tweet.text}}</p>
